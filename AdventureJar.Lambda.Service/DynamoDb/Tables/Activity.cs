@@ -28,7 +28,7 @@ namespace AdventureJar.Lambda.Service.DynamoDb.Tables
         {
             return await this._memoryCache.GetOrCreateAsync("AdventureJar.Web.DynamoService.Tables.FindAll", async o =>
             {
-                o.AbsoluteExpirationRelativeToNow = new TimeSpan(0, 5, 0);
+                o.AbsoluteExpiration = DateTimeOffset.Now.AddMinutes(5);
 
                 Search search = this._table.Scan(new Expression());
 
